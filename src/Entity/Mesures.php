@@ -19,6 +19,21 @@ class Mesures
     #[ORM\ManyToOne(inversedBy: 'mesure')]
     private ?Modules $modules = null;
 
+    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Vitesses::class)]
+    private ?Vitesses $vitesse = null;
+
+    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Positions::class)]
+    private ?Positions $position = null;
+    
+    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Tempratures::class)]
+    private ?Tempratures $Temprature = null;
+    
+    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Consommations::class)]
+    private ?Consommations $Consommation = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $type = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,4 +62,65 @@ class Mesures
 
         return $this;
     }
+
+    public function getVitesse(): ?Vitesses
+    {
+        return $this->vitesse;
+    }
+
+    public function setVitesse(?Vitesses $vitesse): self
+    {
+        $this->vitesse = $vitesse;
+
+        return $this;
+    }
+
+    public function getPosition(): ?Positions
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?Positions $position): self
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function getTemprature(): ?Tempratures
+    {
+        return $this->temprature;
+    }
+
+    public function setTemprature(?Tempratures $temprature): self
+    {
+        $this->temprature = $temprature;
+
+        return $this;
+    }
+
+    public function getConsommation(): ?Consommations
+    {
+        return $this->consommation;
+    }
+
+    public function setConsommation(?Consommations $consommation): self
+    {
+        $this->consommation = $consommation;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
 }
