@@ -16,7 +16,7 @@ class ModulesController extends AbstractController
     #[Route('/', name: 'app_modules_index', methods: ['GET'])]
     public function index(ModulesRepository $modulesRepository): Response
     {
-        
+
 
         return $this->render('modules/index.html.twig', [
             'modules' => $modulesRepository->findAll(),
@@ -33,9 +33,8 @@ class ModulesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $modulesRepository->save($module, true);
 
-            return $this->redirectToRoute('app_modules_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('modules/new.html.twig', [
             'module' => $module,
             'form' => $form,

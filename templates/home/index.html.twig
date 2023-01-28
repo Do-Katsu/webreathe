@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Webreathe{% endblock %}
 
 {% block body %}
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
@@ -18,7 +18,7 @@
                     <div class="carousel-caption d-none d-md-block outsideDiv">
                         <div class="myDiv">
                             <h1 class="myTitle">{{ module.nom }}</h1>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{module.id}}">
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{module.id}}">
                                 Launch demo modal
                             </button>
                         </div>
@@ -53,7 +53,7 @@
                     <div class="carousel-caption d-none d-md-block outsideDiv">
                         <div class="myDiv">
                             <h1 class="myTitle">{{ module.nom }}</h1>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{module.id}}">
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{module.id}}">
                                 Launch demo modal
                             </button>
                         </div>
@@ -158,5 +158,10 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </div>
+    <div class="container bg-light mt-3">
+        <div class="col-md-12 text-center">
+            <a href="{{ path('app_modules_new') }}" class="btn btn-outline-success">Create new module</a>
+        </div>
     </div>
 {% endblock %}
