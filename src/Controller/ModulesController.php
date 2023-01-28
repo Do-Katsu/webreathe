@@ -16,6 +16,8 @@ class ModulesController extends AbstractController
     #[Route('/', name: 'app_modules_index', methods: ['GET'])]
     public function index(ModulesRepository $modulesRepository): Response
     {
+        
+
         return $this->render('modules/index.html.twig', [
             'modules' => $modulesRepository->findAll(),
         ]);

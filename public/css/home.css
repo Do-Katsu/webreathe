@@ -1,0 +1,33 @@
+.responsive {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: auto;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.outsideDiv{
+    height: 90%;
+}
+
+.myDiv {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.myTitle{
+
+    justify-self:flex-start;
+    color: rgb(212, 197, 27);
+    font-weight: 800;
+}
+
+.myText{
+    color: rgb(212, 197, 27);
+}
+
