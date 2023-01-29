@@ -26,10 +26,10 @@ class Mesures
     private ?Positions $position = null;
     
     #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Tempratures::class)]
-    private ?Tempratures $Temprature = null;
+    private ?Tempratures $temprature = null;
     
     #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Consommations::class)]
-    private ?Consommations $Consommation = null;
+    private ?Consommations $consommation = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;

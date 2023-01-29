@@ -18,9 +18,10 @@
                     <div class="carousel-caption d-none d-md-block outsideDiv">
                         <div class="myDiv">
                             <h1 class="myTitle">{{ module.nom }}</h1>
-                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{module.id}}">
+                            <a href="{{ path('app_modules_show', {id: module.id}) }}" class="btn btn-outline-primary">View data</a>
+                            {# <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{module.id}}">
                                 Launch demo modal
-                            </button>
+                            </button> #}
                         </div>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal-{{module.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -53,9 +54,10 @@
                     <div class="carousel-caption d-none d-md-block outsideDiv">
                         <div class="myDiv">
                             <h1 class="myTitle">{{ module.nom }}</h1>
-                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{module.id}}">
+                            <a href="{{ path('app_modules_show', {id: module.id}) }}" class="btn btn-outline-primary">View data</a>
+                            {# <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{module.id}}">
                                 Launch demo modal
-                            </button>
+                            </button> #}
                         </div>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal-{{module.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

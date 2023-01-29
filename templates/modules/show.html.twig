@@ -19,8 +19,154 @@
     </table>
 
     <a href="{{ path('app_modules_index') }}">back to list</a>
-
     <a href="{{ path('app_modules_edit', {'id': module.id}) }}">edit</a>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <h1>vitesse</h1>
+                <canvas id="vitesse" width="200" height"200"></canvas>
+            </div>
+            <div class="col-12 col-md-4">
+                <h1>temprature</h1>
+                <canvas id="temprature" width="200" height"200"></canvas>
+            </div>
+            <div class="col-12 col-md-4">
+                <h1>consommation</h1>
+                <canvas id="consommation" width="200" height"200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        var vitesse = {{ vitesses|json_encode|raw }}; 
+        var count = vitesse.length
+        let labelsVit = []
+        for(let i = 0; i<count ; i++) {
+            labelsVit.push(i)
+        }
+        
+        var vit = document.getElementById('vitesse').getContext('2d');
+        var myChart = new Chart(vit, {
+            type: 'line',
+            data: {
+                labels: labelsVit,
+                datasets: [{
+                    label: '',
+                    data: vitesse.map(function(e) { return e }),
+                    backgroundColor: [
+                        'rgba(255, 0, 0, 0.2)',
+                        
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var tempratures = {{ tempratures|json_encode|raw }}; 
+        var count = tempratures.length
+        let labelsTem = []
+        for(let i = 0; i<count ; i++) {
+            labelsTem.push(i)
+        }
+        
+        var temcCtx = document.getElementById('temprature').getContext('2d');
+        var temChart = new Chart(temcCtx, {
+            type: 'line',
+            data: {
+                labels: labelsTem,
+                datasets: [{
+                    label: '',
+                    data: tempratures.map(function(e) { return e }),
+                    backgroundColor: [
+                        'rgba(0, 255, 0, 0.2)',
+                        
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+        var consommation = {{ consommations|json_encode|raw }}; 
+        var count = consommation.length
+        let labelsCon = []
+        for(let i = 0; i<count ; i++) {
+            labelsCon.push(i)
+        }
+
+        
+        var comCtx = document.getElementById('consommation').getContext('2d');
+        var comChart = new Chart(comCtx, {
+            type: 'line',
+            data: {
+                labels: labelsCon,
+                datasets: [{
+                    label: '',
+                    data: consommation.map(function(e) { return e }),
+                    backgroundColor: [
+                        'rgba(0, 0, 255, 0.2)',
+                        
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 
     {{ include('modules/_delete_form.html.twig') }}
 {% endblock %}
