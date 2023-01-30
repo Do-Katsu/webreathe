@@ -39,6 +39,18 @@ class MesuresRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByTypeAndModule($type, $moduleId)
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.type = :type')
+            ->andWhere('e.modules = :id')
+            ->setParameter('id', $moduleId)
+            ->setParameter('type', $type)
+            ->getQuery();
+
+        return $qb->execute();
+    }
+
 //    /**
 //     * @return Mesures[] Returns an array of Mesures objects
 //     */

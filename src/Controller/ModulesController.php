@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Modules;
+use App\Entity\Mesures;
+use App\Entity\Vitesses;
 use App\Form\ModulesType;
 use App\Repository\ModulesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\MesuresRepository;
 
 #[Route('/modules')]
 class ModulesController extends AbstractController
@@ -42,10 +45,32 @@ class ModulesController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_modules_show', methods: ['GET'])]
-    public function show(Modules $module): Response
+    public function show(Modules $module, MesuresRepository $mesuresRepository): Response
     {
+
+        $vitessesQuery = $mesuresRepository->findByTypeAndModule('vitesse', $module->getId());
+        $tempraturesQuery = $mesuresRepository->findByTypeAndModule('temprature', $module->getId());
+        $consommationsQuery = $mesuresRepository->findByTypeAndModule('consommation', $module->getId());
+
+        $vitesses = [];
+        $tempratures = [];
+        $consommations = [];
+
+        foreach ($vitessesQuery as $vitesse) {
+            $vitesses[] = $vitesse->getVitesse()->getValeur();
+        }
+        foreach ($tempraturesQuery as $temprature) {
+            $tempratures[] = $temprature->getTemprature()->getValeur();
+        }
+        foreach ($consommationsQuery as $consommation) {
+            $consommations[] = $consommation->getConsommation()->getValeur();
+        }
+
         return $this->render('modules/show.html.twig', [
             'module' => $module,
+            'vitesses' => $vitesses,
+            'tempratures' => $tempratures,
+            'consommations' => $consommations,
         ]);
     }
 
