@@ -24,11 +24,14 @@ class ModulesFixture extends Fixture
         $module->setNom('First Module!');
         $manager->persist($module);
 
+        //$date = new \DateTimeImmutable();
+
         for($j=0; $j < 10; $j++) {
             //Fixtures for velocity
+            //$newDate = $date->modify('+1 day');
             $mesureVit = new Mesures;
             $mesureVit
-                ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-10 week', '-5 week')))
+                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-10 week', '-5 week')))
                 ->setModules($module)
                 ->setType('vitesse')
                 ;

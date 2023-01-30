@@ -3,9 +3,13 @@
 {% block title %}New Modules{% endblock %}
 
 {% block body %}
-    <h1>Create new Modules</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Create new Modules</h1>
+                {{ include('modules/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 
-    {{ include('modules/_form.html.twig') }}
-
-    <a href="{{ path('app_home') }}" class='btn btn-outline-success'>back to list</a>
 {% endblock %}

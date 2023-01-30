@@ -3,43 +3,36 @@
 {% block title %}Modules{% endblock %}
 
 {% block body %}
-    <h1>Modules</h1>
+    <h1>Module stats and charts</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Module Id</th>
                 <td>{{ module.id }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
+                <th>Module name</th>
                 <td>{{ module.nom }}</td>
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_modules_index') }}">back to list</a>
-    <a href="{{ path('app_modules_edit', {'id': module.id}) }}">edit</a>
-
-
-    <div class="container">
+        <div class="container">
         <div class="row">
             <div class="col-md-4 col-12">
                 <h1>vitesse</h1>
-                <canvas id="vitesse" width="200" height"200"></canvas>
+                <canvas id="vitesse" width="200"></canvas>
             </div>
             <div class="col-12 col-md-4">
                 <h1>temprature</h1>
-                <canvas id="temprature" width="200" height"200"></canvas>
+                <canvas id="temprature" width="200"></canvas>
             </div>
             <div class="col-12 col-md-4">
                 <h1>consommation</h1>
-                <canvas id="consommation" width="200" height"200"></canvas>
+                <canvas id="consommation" width="200"></canvas>
             </div>
         </div>
     </div>
-
-    
 
     <script>
         var vitesse = {{ vitesses|json_encode|raw }}; 
@@ -167,6 +160,10 @@
             }
         });
     </script>
+    <div class="d-flex justify-content-center align-items-center flex-column">
+        <a href="{{ path('app_modules_edit', {'id': module.id}) }}" class='btn btn-outline-primary my-2 w-25'>edit</a>
+        <a href="{{ path('app_home') }}" class='btn btn-outline-success my-2 w-25'>back to list</a>
+        {{ include('modules/_delete_form.html.twig') }}
+    </div>
 
-    {{ include('modules/_delete_form.html.twig') }}
 {% endblock %}
