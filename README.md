@@ -25,6 +25,7 @@ The following criteria will be considered when evaluating this project:
 
 ## Requirements
 
+- npm
 - PHP 7.2 or higher
 - Composer
 - A web server (e.g. Apache or Nginx)
