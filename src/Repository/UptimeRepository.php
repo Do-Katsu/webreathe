@@ -39,6 +39,15 @@ class UptimeRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByModuleId($moduleId)
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->andWhere('e.modules = :id')
+            ->setParameter('id', $moduleId)
+            ->getQuery();
+
+        return $qb->execute();
+    }
 //    /**
 //     * @return Uptime[] Returns an array of Uptime objects
 //     */

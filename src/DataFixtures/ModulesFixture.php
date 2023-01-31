@@ -31,7 +31,7 @@ class ModulesFixture extends Fixture
             //$newDate = $date->modify('+1 day');
             $mesureVit = new Mesures;
             $mesureVit
-                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-10 week', '-5 week')))
+                ->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-10 week', '-5 week')))
                 ->setModules($module)
                 ->setType('vitesse')
                 ;

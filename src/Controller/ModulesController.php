@@ -3,10 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Modules;
-use App\Entity\Mesures;
-use App\Entity\Vitesses;
 use App\Form\ModulesType;
 use App\Repository\ModulesRepository;
+use App\Repository\UptimeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,12 +16,24 @@ use App\Repository\MesuresRepository;
 class ModulesController extends AbstractController
 {
     #[Route('/', name: 'app_modules_index', methods: ['GET'])]
-    public function index(ModulesRepository $modulesRepository): Response
+    public function index(ModulesRepository $modulesRepository, UptimeRepository $uptimeRepository): Response
     {
+        $modules = $modulesRepository->findAll();
+        $activity = [];
 
-
+        foreach ($modules as $module) {
+            $uptime = $module->getDurationSignal()->toArray();
+            usort($uptime, function ($a, $b) {
+                return $a->getDateValue() > $b->getDateValue();
+            });
+            if (!empty($uptime)) {
+                $activity[] = end($uptime)->isActive();
+            }
+        }
+        
         return $this->render('modules/index.html.twig', [
-            'modules' => $modulesRepository->findAll(),
+            'modules' => $modules,
+            'activity' => $activity,
         ]);
     }
 
