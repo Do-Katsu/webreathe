@@ -12,6 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\MesuresRepository;
 
+/**
+ * This is a classic CRUD controller
+ * I did some modifications on the Index function and the Show function
+ * Didn't touch the other ones since they're working as intended
+ */
 #[Route('/modules')]
 class ModulesController extends AbstractController
 {
@@ -21,16 +26,29 @@ class ModulesController extends AbstractController
         $modules = $modulesRepository->findAll();
         $activity = [];
 
+        /*
+        this is a function that takes from the Entity "Uptime" and returns the a table with all the most recent status
+        it returns a 1 if it's an active status, 2 if it's inactive, and 0 in all other cases.
+        */
         foreach ($modules as $module) {
-            $uptime = $module->getDurationSignal()->toArray();
-            usort($uptime, function ($a, $b) {
+            $uptimes = $module->getDurationSignal()->toArray();
+            usort($uptimes, function ($a, $b) {
                 return $a->getDateValue() > $b->getDateValue();
             });
-            if (!empty($uptime)) {
-                $activity[] = end($uptime)->isActive();
+            
+            if (!empty($uptimes)) {
+                $uptime = end($uptimes)->isActive();
+                if ($uptime === true) {
+                    $activity[] = 1;
+                }
+                elseif ($uptime === false) {
+                    $activity[] = 2;
+                }
+            } else {
+                $activity[] = 0;
             }
         }
-        
+
         return $this->render('modules/index.html.twig', [
             'modules' => $modules,
             'activity' => $activity,
@@ -58,7 +76,10 @@ class ModulesController extends AbstractController
     #[Route('/{id}', name: 'app_modules_show', methods: ['GET'])]
     public function show(Modules $module, MesuresRepository $mesuresRepository): Response
     {
-
+        /**
+         * this part is about taking the different measurements and sending them to the template
+         * in order to use them in charts
+         */
         $vitessesQuery = $mesuresRepository->findByTypeAndModule('vitesse', $module->getId());
         $tempraturesQuery = $mesuresRepository->findByTypeAndModule('temprature', $module->getId());
         $consommationsQuery = $mesuresRepository->findByTypeAndModule('consommation', $module->getId());
