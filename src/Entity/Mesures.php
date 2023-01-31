@@ -19,16 +19,16 @@ class Mesures
     #[ORM\ManyToOne(inversedBy: 'mesure')]
     private ?Modules $modules = null;
 
-    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Vitesses::class)]
+    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Vitesses::class, cascade: ['persist', 'remove'])]
     private ?Vitesses $vitesse = null;
 
-    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Positions::class)]
+    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Positions::class, cascade: ['persist', 'remove'])]
     private ?Positions $position = null;
     
-    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Tempratures::class)]
+    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Tempratures::class, cascade: ['persist', 'remove'])]
     private ?Tempratures $temprature = null;
     
-    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Consommations::class)]
+    #[ORM\OneToOne(mappedBy: 'mesure', targetEntity: Consommations::class, cascade: ['persist', 'remove'])]
     private ?Consommations $consommation = null;
 
     #[ORM\Column(length: 255)]

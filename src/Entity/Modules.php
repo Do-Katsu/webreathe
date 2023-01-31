@@ -18,10 +18,10 @@ class Modules
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'modules', targetEntity: Mesures::class)]
+    #[ORM\OneToMany(mappedBy: 'modules', targetEntity: Mesures::class, cascade: ['persist', 'remove'])]
     private Collection $mesure;
 
-    #[ORM\OneToMany(mappedBy: 'modules', targetEntity: Uptime::class)]
+    #[ORM\OneToMany(mappedBy: 'modules', targetEntity: Uptime::class, cascade: ['persist', 'remove'])]
     private Collection $durationSignal;
 
     public function __construct()
