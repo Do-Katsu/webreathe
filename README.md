@@ -57,14 +57,14 @@ $ composer install
 
 ```
 shell
-$ bin/console doctrine:database:create
-$ bin/console doctrine:migrations:migrate
+$ symfony console doctrine:database:create
+$ symfony console doctrine:migrations:migrate
 ```
 
 1. Load the fixtures (optional)
 
 ```shell
-$ bin/console doctrine:fixtures:load
+$ symfony console doctrine:fixtures:load
 ```
 
 1. Start the local web server
