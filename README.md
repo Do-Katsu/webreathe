@@ -41,23 +41,16 @@ $ git clone https://github.com/Do-Katsu/webreathe.git
 
 1. Navigate to the project directory
 
-```
-shell
+```shell
+
 $ cd webreathe
 ```
 
 1. Install the dependencies using Composer
 
-```
-ruby
+```shell
+
 $ composer install
-```
-
-1. Configure the environment variables in the .env file
-
-```
-shell
-$ nano .env
 ```
 
 1. Create the database using Doctrine migrations
