@@ -34,8 +34,8 @@ The following criteria will be considered when evaluating this project:
 
 1. Clone the repository to your local machine
 
-```
-shell
+```shell
+
 $ git clone https://github.com/Do-Katsu/webreathe.git
 ```
 
